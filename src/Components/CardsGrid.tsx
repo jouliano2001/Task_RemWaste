@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CardBody, CardContainer, CardItem } from './ui/3d-card'
 import { fetchSkipOptions, type SkipOption } from '../Services/skipService';
 import four from '../assets/4-yarder-skip.jpg'
@@ -47,22 +47,22 @@ function CardsGrid() {
   if (loading) return <div className="text-center py-10">Loading skip options...</div>;
 
   return (
-    <BackgroundGradientAnimation>
+    <div>
       <div className='flex flex-col items-center mt-20'>
         <p className='text-3xl font-bold text-white'>Choose Your Skip Size</p>
         <p className='text-xl text-white'>Select the skip size that best suits your needs</p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-20">
         {skips.map((skip) => (
           <CardContainer key={skip.id} className="inter-var">
-            <CardBody className="bg-neutral-900 relative group/card border border-neutral-700 w-full h-auto rounded-xl p-6">
-              <CardItem translateZ="50" className="text-xl font-bold text-white">
+            <CardBody className="bg-[#2a0a10] relative group/card border border-[#5a1a1f] w-full h-auto rounded-xl p-6">
+              <CardItem translateZ="50" className="text-xl font-bold text-[#ffdddd]">
                 {skip.size} yd³ Skip
               </CardItem>
               <CardItem
                 as="p"
                 translateZ="60"
-                className="text-neutral-400 text-sm max-w-sm mt-2"
+                className="text-[#ffbbbb] text-sm max-w-sm mt-2"
               >
                 Hire: {skip.hire_period_days} days<br />
                 Price: £{(skip.price_before_vat * (1 + skip.vat / 100)).toFixed(2)}
@@ -90,8 +90,8 @@ function CardsGrid() {
       </div>
 
       {selectedSkip && (
-        <div className="fixed inset-0 z-50 bg-[#000000bd] flex items-center justify-center backdrop-blur-sm h-screen w-screen">
-          <div className="bg-neutral-900 border border-neutral-700 rounded-xl p-8 max-w-md w-full text-white shadow-2xl">
+        <div className="fixed inset-0 z-50 bg-[#350707bd] flex items-center justify-center backdrop-blur-sm h-screen w-screen">
+          <div className="bg-[#2a0a10] border border-neutral-700 rounded-xl p-8 max-w-md w-full text-white shadow-2xl">
             <h2 className="text-xl font-bold mb-4">Skip Receipt</h2>
             <img
               src={sizeToImageMap[selectedSkip.size]}
@@ -120,7 +120,7 @@ function CardsGrid() {
           </div>
         </div>
       )}
-    </BackgroundGradientAnimation>
+    </div>
   )
 }
 
